@@ -24,12 +24,13 @@ namespace KG_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    if (openFileDialog1.OpenFile() != null)
+                    if (openFileDialog.OpenFile() != null)
                     {
+                        pictureBox.ImageLocation = openFileDialog.FileName;
                     }
                 }
                 catch (Exception ex)
