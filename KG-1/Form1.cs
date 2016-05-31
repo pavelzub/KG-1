@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,12 +18,19 @@ namespace KG_1
             InitializeComponent();
         }
 
+        private void bildPlot() {
+            for (int i = 0; i < ((Bitmap)pictureBox.Image).Height; i++)
+                for (int j = 0; j < ((Bitmap)pictureBox.Image).Width; j++) {
+                    Color pixel = ((Bitmap)pictureBox.Image).GetPixel(j, i);
+                }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void loadImage()
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -38,6 +46,18 @@ namespace KG_1
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            loadImage();
+        }
+
+        private void pictureBox_Paint(object sender, PaintEventArgs e)
+        {
+
+            pictureBox.Width = (int)(pictureBox.Height * ((Double)(((Bitmap)pictureBox.Image).Width) / (Double)(((Bitmap)pictureBox.Image).Height)));
+            bildPlot();
         }
     }
 }
